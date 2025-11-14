@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literature & Languages - Jothish International School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Same CSS as course-math.html - omitted for brevity */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f4f7f9;
+            --white: #ffffff;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1a2530);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .course-hero {
+            background: linear-gradient(135deg, var(--primary-color), #1a5276);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1200') center/cover;
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .course-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--secondary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3.5rem;
+            color: var(--primary-color);
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        .course-details {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .course-details h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .course-details h3 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        .course-details p {
+            margin-bottom: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .syllabus-item {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .syllabus-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .syllabus-item p {
+            font-size: 0.95rem;
+        }
+
+        .teacher-profile {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .teacher-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .teacher-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .teacher-info p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .enrollment-info {
+            background: linear-gradient(135deg, var(--secondary-color), #1a5276);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .enrollment-info h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .enrollment-info p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .enrollment-info .btn {
+            background: var(--white);
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+        }
+
+        .enrollment-info .btn:hover {
+            background: transparent;
+            color: var(--white);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            color: var(--secondary-color);
+            transform: translateX(-5px);
+        }
+
+        .back-btn i {
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), #1a2530);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: linear-gradient(135deg, var(--primary-color), #1a2530);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 3rem;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .course-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .course-hero p {
+                font-size: 1.1rem;
+            }
+
+            .teacher-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i> Jothish International School
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#news">News</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Course Hero Section -->
+    <section class="course-hero">
+        <div class="hero-content">
+            <h1>Literature & Languages</h1>
+            <p>Explore the power of words and communicate with the world</p>
+            <a href="#enrollment" class="btn">Enroll Now</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section>
+        <a href="index.html#courses" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to All Courses
+        </a>
+
+        <div class="course-details">
+            <h2>Course Overview</h2>
+            <p>Our Literature & Languages program develops exceptional communication skills, cultural awareness, and critical thinking through the study of classic and contemporary works. Students master multiple languages while exploring the rich tapestry of human expression through poetry, prose, and drama.</p>
+            
+            <h3>What You'll Learn</h3>
+            <p>Students will develop advanced reading comprehension, analytical writing, and oral communication skills. The program emphasizes cultural competency, literary analysis, and the ability to articulate complex ideas effectively in multiple languages.</p>
+        </div>
+
+        <div class="course-details">
+            <h2>Course Syllabus</h2>
+            <div class="syllabus-grid">
+                <div class="syllabus-item">
+                    <h4>English Literature</h4>
+                    <p>Classic and contemporary works, poetry analysis, and critical essay writing</p>
+                </div>
+                <div class="syllabus-item">
+                    <h4>Creative Writing</h4>
+                    <p>Fiction, poetry, drama, and creative non-fiction workshops</p>
+                </div>
+                <div class="syllabus-item">
+                    <h4>Spanish Language</h4>
+                    <p>Conversational fluency, grammar, literature, and Hispanic culture</p>
+                </div>
+                <div class="syllabus-item">
+                    <h4>French Language</h4>
+                    <p>Language proficiency, French literature, and Francophone studies</p>
+                </div>
+                <div class="syllabus-item">
+                    <h4>Mandarin Chinese</h4>
+                    <p>Character recognition, conversation, and Chinese cultural studies</p>
+                </div>
+                <div class="syllabus-item">
+                    <h4>Public Speaking</h4>
+                    <p>Debate, rhetoric, presentation skills, and persuasive communication</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="teacher-profile">
+            <div class="teacher-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="teacher-info">
+                <h4>Prof. Michael Chen</h4>
+                <p>Head of Literature & Languages Department</p>
+                <p>MA in Comparative Literature, Harvard | 12+ Years Experience</p>
+                <p>Prof. Chen brings global perspective to language education, having taught in three continents. His students consistently achieve top scores in AP and IB examinations.</p>
+            </div>
+        </div>
+
+        <div class="enrollment-info" id="enrollment">
+            <h3>Enroll in Literature & Languages</h3>
+            <p>Join our vibrant community of readers, writers, and global communicators.</p>
+            <p><strong>Prerequisites:</strong> English proficiency test</p>
+            <p><strong>Duration:</strong> 4 Years</p>
+            <p><strong>Credit Hours:</strong> 28</p>
+            <a href="index.html#contact" class="btn">Contact Us to Enroll</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Jothish International School. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i> by Jothish Int School IT Team (Shayaan and aayan and looth)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Dynamic current year in footer
+        const currentYear = new Date().getFullYear();
+        document.querySelector('footer p').innerHTML = `&copy; ${currentYear} Jothish International School. All rights reserved.`;
+    </script>
+</body>
+</html>
